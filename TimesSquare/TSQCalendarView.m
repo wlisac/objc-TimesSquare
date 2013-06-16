@@ -252,6 +252,9 @@
         if (self.pagingEnabled) {
             CGRect sectionRect = [self.tableView rectForSection:firstNewIndexPath.section];
             [self.tableView setContentOffset:sectionRect.origin animated:YES];
+        } else if (self.pagingWeeksEnabled) {
+            CGRect rowRect = [self.tableView rectForRowAtIndexPath:firstNewIndexPath];
+            [self.tableView setContentOffset:rowRect.origin animated:YES];
         } else {
             if (CGRectGetMinY(scrollBounds) > CGRectGetMinY(newlySelectedRect)) {
                 [self.tableView scrollToRowAtIndexPath:firstNewIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -450,6 +453,10 @@
         }
         CGRect sectionRect = [self.tableView rectForSection:section];
         *targetContentOffset = sectionRect.origin;
+    } else if (self.pagingWeeksEnabled) {
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:*targetContentOffset];
+        CGRect rowRect = [self.tableView rectForRowAtIndexPath:indexPath];
+        *targetContentOffset = rowRect.origin;
     }
 }
 

@@ -71,6 +71,12 @@
  */
 @property (nonatomic) BOOL pagingEnabled;
 
+/** Whether or not the calendar snaps to begin a week at the top of its bounds.
+ 
+ This property is roughly equivalent to the one defined on `UIScrollView` except the snapping is to weeks rather than integer multiples of the view's bounds.
+ */
+@property (nonatomic) BOOL pagingWeeksEnabled;
+
 /** The distance from the edges of the view to where the content begins.
  
  This property is equivalent to the one defined on `UIScrollView`.
